@@ -1,0 +1,106 @@
+[
+    {
+        "model": "wineapi.winestyle",
+        "pk": 1,
+        "fields": {
+            "wine": 1,
+            "style": 1  
+        }
+    },
+    {
+        "model": "wineapi.winestyle",
+        "pk": 2,
+        "fields": {
+            "wine": 1,
+            "style": 7  
+        }
+    },
+    {
+        "model": "wineapi.winestyle",
+        "pk": 3,
+        "fields": {
+            "wine": 2,
+            "style": 1  
+        }
+    },
+    {
+        "model": "wineapi.winestyle",
+        "pk": 4,
+        "fields": {
+            "wine": 2,
+            "style": 7  
+        }
+    },
+    {
+        "model": "wineapi.winestyle",
+        "pk": 5,
+        "fields": {
+            "wine": 3,
+            "style": 4  
+        }
+    },
+    {
+        "model": "wineapi.winestyle",
+        "pk": 6,
+        "fields": {
+            "wine": 3,
+            "style": 8  
+        }
+    },
+    {
+        "model": "wineapi.winestyle",
+        "pk": 7,
+        "fields": {
+            "wine": 4,
+            "style": 1  
+        }
+    },
+    {
+        "model": "wineapi.winestyle",
+        "pk": 8,
+        "fields": {
+            "wine": 4,
+            "style": 7  
+        }
+    },
+    {
+        "model": "wineapi.winestyle",
+        "pk": 9,
+        "fields": {
+            "wine": 5,
+            "style": 1  
+        }
+    },
+    {
+        "model": "wineapi.winestyle",
+        "pk": 10,
+        "fields": {
+            "wine": 5,
+            "style": 7  
+        }
+    },
+    {
+        "model": "wineapi.winestyle",
+        "pk": 11,
+        "fields": {
+            "wine": 6,
+            "style": 5  
+        }
+    },
+    {
+        "model": "wineapi.winestyle",
+        "pk": 12,
+        "fields": {
+            "wine": 6,
+            "style": 6  
+        }
+    },
+    {
+        "model": "wineapi.winestyle",
+        "pk": 13,
+        "fields": {
+            "wine": 6,
+            "style": 9  
+        }
+    }
+]

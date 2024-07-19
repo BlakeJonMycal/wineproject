@@ -1,0 +1,79 @@
+[
+    {
+        "model": "wineapi.style",
+        "pk": 1,
+        "fields": {
+            "name": "Red"
+        }
+    },
+    {
+        "model": "wineapi.style",
+        "pk": 2,
+        "fields": {
+            "name": "White"
+        }
+    },
+    {
+        "model": "wineapi.style",
+        "pk": 3,
+        "fields": {
+            "name": "Orange"
+        }
+    },
+    {
+        "model": "wineapi.style",
+        "pk": 4,
+        "fields": {
+            "name": "Rose"
+        }
+    },
+    {
+        "model": "wineapi.style",
+        "pk": 5,
+        "fields": {
+            "name": "Sparkling"
+        }
+    },
+    {
+        "model": "wineapi.style",
+        "pk": 6,
+        "fields": {
+            "name": "Fizzy"
+        }
+    },
+    {
+        "model": "wineapi.style",
+        "pk": 7,
+        "fields": {
+            "name": "Bold"
+        }
+    },
+    {
+        "model": "wineapi.style",
+        "pk": 8,
+        "fields": {
+            "name": "Medium Body"
+        }
+    },
+    {
+        "model": "wineapi.style",
+        "pk": 9,
+        "fields": {
+            "name": "Light Body"
+        }
+    },
+    {
+        "model": "wineapi.style",
+        "pk": 10,
+        "fields": {
+            "name": "Organic"
+        }
+    },
+    {
+        "model": "wineapi.style",
+        "pk": 11,
+        "fields": {
+            "name": "Natural"
+        }
+    }
+]

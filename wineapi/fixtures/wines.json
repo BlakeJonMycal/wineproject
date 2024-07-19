@@ -1,0 +1,98 @@
+[
+    {
+        "model": "wineapi.wine",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "name": "Chateau Margaux 2010",
+            "region": "Bordeaux",
+            "vintage": 2010,
+            "abv": 13.5,
+            "tasting_notes": "Aromas of blackcurrant, cedar, tobacco, and graphite. Full-bodied.",
+            "grape_variety": "Cabernet Sauvignon, Merlot",
+            "vineyard": "Chateau Margaux",
+            "image_url": "https://images.vivino.com/thumbs/DygMHm5zSi2qXX6I0Hk90A_pl_375x500.png",
+            "rating": 4
+        }
+    },
+    {
+        "model": "wineapi.wine",
+        "pk": 2,
+        "fields": {
+            "user": 2,
+            "name": "Casa Lapostolle Clos Apalta 2015",
+            "region": "Colchagua Valley",
+            "vintage": 2015,
+            "abv": 14.5,
+            "tasting_notes": "Intense flavors of dark fruits, chocolate, and spices. Full-bodied.",
+            "grape_variety": "Cabernet Sauvignon, Carmenere, Petit Verdot",
+            "vineyard": "Casa Lapostolle",
+            "image_url": "https://images.vivino.com/thumbs/ZXXmsvjTQQCJ_fxvxnrffA_pb_x960.png",
+            "rating": 4
+        }
+    },
+    {
+        "model": "wineapi.wine",
+        "pk": 3,
+        "fields": {
+            "user": 3,
+            "name": "Domaine de la Romanée-Conti La Tâche 2018",
+            "region": "Burgundy",
+            "vintage": 2018,
+            "abv": 13.0,
+            "tasting_notes": "Flavors of cherry, plum, and violets. Medium-bodied.",
+            "grape_variety": "Pinot Noir",
+            "vineyard": "Domaine de la Romanée-Conti",
+            "image_url": "https://images.vivino.com/thumbs/rUPGZo11SwW6haQta4COqQ_pb_x600.png",
+            "rating": 5
+        }
+    },
+    {
+        "model": "wineapi.wine",
+        "pk": 4,
+        "fields": {
+            "user": 4,
+            "name": "Penfolds Grange 2008",
+            "region": "South Australia",
+            "vintage": 2008,
+            "abv": 14.5,
+            "tasting_notes": "Rich and full-bodied with notes of plum, blackberry, and mocha.",
+            "grape_variety": "Shiraz, Cabernet Sauvignon",
+            "vineyard": "Penfolds",
+            "image_url": "https://images.vivino.com/thumbs/hRl7EuOORIuIM6JxYyxgBA_pb_600x600.png",
+            "rating": 4
+        }
+    },
+    {
+        "model": "wineapi.wine",
+        "pk": 5,
+        "fields": {
+            "user": 5,
+            "name": "Screaming Eagle Cabernet Sauvignon 2016",
+            "region": "Napa Valley",
+            "vintage": 2016,
+            "abv": 14.5,
+            "tasting_notes": "Deep flavors of cassis, blackberry, and graphite. Full-bodied.",
+            "grape_variety": "Cabernet Sauvignon",
+            "vineyard": "Screaming Eagle",
+            "image_url": "https://images.vivino.com/thumbs/Z92v0bohTBaVUVPNjiXPuA_pb_x600.png",
+            "rating": 5
+        }
+    },
+    {
+        "model": "wineapi.wine",
+        "pk": 6,
+        "fields": {
+            "user": 6,
+            "name": "Veuve Clicquot Yellow Label Brut",
+            "region": "Reims",
+            "vintage": 2006,
+            "abv": 12.0,
+            "tasting_notes": "Fresh and vibrant with notes of green apple and brioche. Light-bodied.",
+            "grape_variety": "Pinot Noir, Chardonnay",
+            "vineyard": "Veuve Clicquot",
+            "image_url": "https://www.wine.com/product/images/w_600,h_600,dpr_2.0,c_fit,q_auto:good,fl_progressive/528fbs.jpg",
+            "rating": 3
+        }
+    }
+]
