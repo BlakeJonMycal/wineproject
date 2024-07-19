@@ -1,0 +1,50 @@
+[
+    {
+        "model": "wineapi.savedwine",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "wine": 2
+        }
+    },
+    {
+        "model": "wineapi.savedwine",
+        "pk": 2,
+        "fields": {
+            "user": 2,
+            "wine": 3
+        }
+    },
+    {
+        "model": "wineapi.savedwine",
+        "pk": 3,
+        "fields": {
+            "user": 3,
+            "wine": 4
+        }
+    },
+    {
+        "model": "wineapi.savedwine",
+        "pk": 4,
+        "fields": {
+            "user": 4,
+            "wine": 5
+        }
+    },
+    {
+        "model": "wineapi.savedwine",
+        "pk": 5,
+        "fields": {
+            "user": 5,
+            "wine": 6
+        }
+    },
+    {
+        "model": "wineapi.savedwine",
+        "pk": 6,
+        "fields": {
+            "user": 6,
+            "wine": 1
+        }
+    }
+]
