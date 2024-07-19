@@ -27,11 +27,11 @@ class WineViewSet(viewsets.ViewSet):
 
     def retrieve(self, request, pk=None):
         try:
-            book = Book.objects.get(pk=pk)
-            serializer = BookSerializer(book, context={'request': request})
+            wine = Wine.objects.get(pk=pk)
+            serializer = WineSerializer(wine, context={'request': request})
             return Response(serializer.data)
 
-        except Book.DoesNotExist:
+        except Wine.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
     def create(self, request):
