@@ -36,25 +36,37 @@ class WineViewSet(viewsets.ViewSet):
 
     def create(self, request):
         # Get the data from the client's JSON payload
-        title = request.data.get('title')
-        author = request.data.get('author')
-        isbn_number = request.data.get('isbn_number')
-        cover_image = request.data.get('cover_image')
+        name = request.data.get('name')
+        region = request.data.get('region')
+        vintage = request.data.get('vintage')
+        abv = request.data.get('abv')
+        tasting_notes = request.data.get('tasting_notes')
+        grape_variety = request.data.get('grape_variety')
+        vineyard = request.data.get('vineyard')
+        image_url = request.data.get('image_url')
+        rating = request.data.get('rating')
+
+
 
         # Create a book database row first, so you have a
         # primary key to work with
-        book = Book.objects.create(
+        wine = Wine.objects.create(
             user=request.user,
-            title=title,
-            author=author,
-            cover_image=cover_image,
-            isbn_number=isbn_number)
+            name=name,
+            region=region,
+            vintage=vintage,
+            abv=abv,
+            tasting_notes=tasting_notes,
+            grape_variety=grape_variety,
+            vineyard=vineyard,
+            image_url=image_url,
+            rating=rating)
 
         # Establish the many-to-many relationships
-        category_ids = request.data.get('categories', [])
-        book.categories.set(category_ids)
+        style_ids = request.data.get('styles', [])
+        wine.styles.set(style_ids)
 
-        serializer = BookSerializer(book, context={'request': request})
+        serializer = WineSerializer(wine, context={'request': request})
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def update(self, request, pk=None):
