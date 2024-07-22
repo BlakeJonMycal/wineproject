@@ -103,11 +103,11 @@ class WineViewSet(viewsets.ViewSet):
 
     def destroy(self, request, pk=None):
         try:
-            book = Book.objects.get(pk=pk)
-            self.check_object_permissions(request, book)
-            book.delete()
+            wine = Wine.objects.get(pk=pk)
+            self.check_object_permissions(request, wine)
+            wine.delete()
 
             return Response(status=status.HTTP_204_NO_CONTENT)
 
-        except Book.DoesNotExist:
+        except Wine.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
