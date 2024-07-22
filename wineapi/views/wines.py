@@ -1,13 +1,13 @@
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework import serializers
-from wineapi.models import Wine
+from wineapi.models import Wine, Style
 from .styles import StyleSerializer
 
 
 class WineSerializer(serializers.ModelSerializer):
     is_owner = serializers.SerializerMethodField()
-    styles = StyleSerializer(many=True)
+    styles = serializers.PrimaryKeyRelatedField(queryset=Style.objects.all(), many=True)
 
     def get_is_owner(self, obj):
         # Check if the authenticated user is the owner
@@ -72,28 +72,33 @@ class WineViewSet(viewsets.ViewSet):
     def update(self, request, pk=None):
         try:
 
-            book = Book.objects.get(pk=pk)
+            wine = Wine.objects.get(pk=pk)
 
             # Is the authenticated user allowed to edit this book?
-            self.check_object_permissions(request, book)
+            self.check_object_permissions(request, wine)
 
-            serializer = BookSerializer(data=request.data)
+            serializer = WineSerializer(wine, data=request.data, partial=True, context={'request': request})
             if serializer.is_valid():
-                book.title = serializer.validated_data['title']
-                book.author = serializer.validated_data['author']
-                book.isbn_number = serializer.validated_data['isbn_number']
-                book.cover_image = serializer.validated_data['cover_image']
-                book.save()
+                wine.name = serializer.validated_data['name']
+                wine.region = serializer.validated_data['region']
+                wine.vintage = serializer.validated_data['vintage']
+                wine.abv = serializer.validated_data['abv']
+                wine.tasting_notes = serializer.validated_data['tasting_notes']
+                wine.grape_variety = serializer.validated_data['grape_variety']
+                wine.vineyard = serializer.validated_data['vineyard']
+                wine.image_url = serializer.validated_data['image_url']
+                wine.rating = serializer.validated_data['rating']
+                wine.save()
 
-                category_ids = request.data.get('categories', [])
-                book.categories.set(category_ids)
+                style_ids = request.data.get('styles', [])
+                wine.styles.set(style_ids)
 
-                serializer = BookSerializer(book, context={'request': request})
+                serializer = WineSerializer(wine, context={'request': request})
                 return Response(None, status.HTTP_204_NO_CONTENT)
 
             return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
 
-        except Book.DoesNotExist:
+        except Wine.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
     def destroy(self, request, pk=None):
