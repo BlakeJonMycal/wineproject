@@ -1,2 +1,3 @@
-from .auth import register_user, login_user
+from .users import UserViewSet
 from .styles import StyleViewSet
+from .wines import WineViewSet
