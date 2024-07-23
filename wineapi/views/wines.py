@@ -1,4 +1,4 @@
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, permissions
 from rest_framework.response import Response
 from rest_framework import serializers
 from wineapi.models import Wine, Style
@@ -19,10 +19,15 @@ class WineSerializer(serializers.ModelSerializer):
 
 
 class WineViewSet(viewsets.ViewSet):
+    permission_classes = [permissions.IsAuthenticated]
 
     def list(self, request):
-        wines = Wine.objects.all()
-        serializer = WineSerializer(wines, many=True, context={'request': request})
+        mine = request.query_params.get('mine', 'false').lower() == 'true'
+        if mine:
+            queryset = Wine.objects.filter(user=request.auth.user)
+        else:
+            queryset = Wine.objects.all()
+        serializer = WineSerializer(queryset, many=True, context={'request': request})
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
