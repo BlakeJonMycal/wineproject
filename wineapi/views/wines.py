@@ -110,12 +110,17 @@ class WineViewSet(viewsets.ViewSet):
             return Response(status=status.HTTP_404_NOT_FOUND)
 
     def destroy(self, request, pk=None):
+
         try:
             wine = Wine.objects.get(pk=pk)
-            self.check_object_permissions(request, wine)
-            wine.delete()
+            if wine.user.id == request.auth.user.id:
+                wine.delete()
+                return Response(None, status=status.HTTP_204_NO_CONTENT)
+            else:
+                return Response({'message': 'You did not create this wine'}, status=status.HTTP_403_FORBIDDEN)
 
-            return Response(status=status.HTTP_204_NO_CONTENT)
+        except Wine.DoesNotExist as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
 
-        except Wine.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+        except Exception as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR) 
