@@ -73,35 +73,27 @@ class WineViewSet(viewsets.ViewSet):
 
         serializer = WineSerializer(wine, context={'request': request})
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-
+    
     def update(self, request, pk=None):
         try:
-
             wine = Wine.objects.get(pk=pk)
-
-            # Is the authenticated user allowed to edit this book?
             self.check_object_permissions(request, wine)
+
+            style_ids = request.data.pop('styles', [])
 
             serializer = WineSerializer(wine, data=request.data, partial=True, context={'request': request})
             if serializer.is_valid():
-                wine.name = serializer.validated_data['name']
-                wine.region = serializer.validated_data['region']
-                wine.vintage = serializer.validated_data['vintage']
-                wine.abv = serializer.validated_data['abv']
-                wine.tasting_notes = serializer.validated_data['tasting_notes']
-                wine.grape_variety = serializer.validated_data['grape_variety']
-                wine.vineyard = serializer.validated_data['vineyard']
-                wine.image_url = serializer.validated_data['image_url']
-                wine.rating = serializer.validated_data['rating']
-                wine.save()
+            # Update the wine instance with the validated data
+                serializer.save()
 
-                style_ids = request.data.get('styles', [])
+            # Handle the styles field separately
                 wine.styles.set(style_ids)
 
+            # Return the updated wine data
                 serializer = WineSerializer(wine, context={'request': request})
-                return Response(None, status.HTTP_204_NO_CONTENT)
+                return Response(serializer.data, status=status.HTTP_200_OK)
 
-            return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         except Wine.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
