@@ -7,7 +7,7 @@ from .styles import StyleSerializer
 
 class WineSerializer(serializers.ModelSerializer):
     is_owner = serializers.SerializerMethodField()
-    styles = StyleSerializer(many=True, read_only=True)
+    styles = StyleSerializer(many=True)
 
     def get_is_owner(self, obj):
         # Check if the authenticated user is the owner
@@ -69,10 +69,7 @@ class WineViewSet(viewsets.ViewSet):
 
         # Establish the many-to-many relationships
         style_ids = request.data.get('styles', [])
-        if style_ids:
-            for style_id in style_ids:
-                style = Style.objects.get(id=style_id)
-                wine.styles.add(style)
+        wine.styles.set(style_ids)
 
         serializer = WineSerializer(wine, context={'request': request})
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -99,7 +96,7 @@ class WineViewSet(viewsets.ViewSet):
                 wine.save()
 
                 style_ids = request.data.get('styles', [])
-                wine.styles.set(*style_ids)
+                wine.styles.set(style_ids)
 
                 serializer = WineSerializer(wine, context={'request': request})
                 return Response(None, status.HTTP_204_NO_CONTENT)
