@@ -11,19 +11,28 @@ from django.contrib.auth import authenticate
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'first_name', 'last_name', 'password']
+        fields = ['id', 'email', 'username', 'first_name', 'last_name', 'password']
         extra_kwargs = {'password': {'write_only': True}}
 
 
 class UserViewSet(viewsets.ViewSet):
     queryset = User.objects.all()
-    permission_classes = [permissions.AllowAny]
+    def get_permissions(self):
+        """
+        Instantiates and returns the list of permissions that this view requires.
+        """
+        if self.action == 'register_account' or self.action == 'user_login':
+            permission_classes = [permissions.AllowAny]
+        else:
+            permission_classes = [permissions.IsAuthenticated]
+        return [permission() for permission in permission_classes]
 
     @action(detail=False, methods=['post'], url_path='register')
     def register_account(self, request):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             user = User.objects.create_user(
+                email=serializer.validated_data['email'],
                 username=serializer.validated_data['username'],
                 first_name=serializer.validated_data['first_name'],
                 last_name=serializer.validated_data['last_name'],
@@ -45,3 +54,4 @@ class UserViewSet(viewsets.ViewSet):
             return Response({'token': token.key}, status=status.HTTP_200_OK)
         else:
             return Response({'error': 'Invalid Credentials'}, status=status.HTTP_400_BAD_REQUEST)
+    

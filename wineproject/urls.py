@@ -1,11 +1,13 @@
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
-from wineapi.views import UserViewSet, StyleViewSet, WineViewSet
+from wineapi.views import UserViewSet, StyleViewSet, WineViewSet, UserProfileViewSet
 
 router = DefaultRouter(trailing_slash=False)
 router.register(r'styles', StyleViewSet, 'style')
 router.register(r'wines', WineViewSet, 'wine')
+router.register(r'profiles', UserProfileViewSet, 'profile')
+
 
 
 urlpatterns = [
