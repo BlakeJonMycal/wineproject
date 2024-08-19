@@ -24,12 +24,15 @@ class WineViewSet(viewsets.ViewSet):
     def list(self, request):
         mine = request.query_params.get('mine', 'false').lower() == 'true'
         region = request.query_params.get('region', None)
+        name = request.query_params.get('name', None)
         if mine:
             queryset = Wine.objects.filter(user=request.auth.user)
         else:
             queryset = Wine.objects.all()
         if region:
             queryset = queryset.filter(region__icontains=region)
+        if name:
+            queryset = queryset.filter(name__icontains=name)
         serializer = WineSerializer(queryset, many=True, context={'request': request})
         return Response(serializer.data)
 
