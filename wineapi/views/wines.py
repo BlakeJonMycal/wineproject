@@ -32,7 +32,7 @@ class WineViewSet(viewsets.ViewSet):
         if region:
             queryset = queryset.filter(region__icontains=region)
         if name:
-            queryset = queryset.filter(name_icontains=name)
+            queryset = queryset.filter(name__icontains=name)
         serializer = WineSerializer(queryset, many=True, context={'request': request})
         return Response(serializer.data)
 
