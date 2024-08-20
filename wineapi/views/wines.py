@@ -25,6 +25,8 @@ class WineViewSet(viewsets.ViewSet):
         mine = request.query_params.get('mine', 'false').lower() == 'true'
         region = request.query_params.get('region', None)
         name = request.query_params.get('name', None)
+        styles = request.query_params.getlist('styles', None)
+        
         if mine:
             queryset = Wine.objects.filter(user=request.auth.user)
         else:
@@ -33,6 +35,9 @@ class WineViewSet(viewsets.ViewSet):
             queryset = queryset.filter(region__icontains=region)
         if name:
             queryset = queryset.filter(name__icontains=name)
+        if styles:
+            queryset = queryset.filter(styles__in=styles).distinct()
+            
         serializer = WineSerializer(queryset, many=True, context={'request': request})
         return Response(serializer.data)
 
